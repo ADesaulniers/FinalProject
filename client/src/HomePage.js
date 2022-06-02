@@ -1,36 +1,33 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import { AppContext } from "./AppContext";
 
 // import 'dotenv/config'
 
 const HomePage = () => {
-  
-
-  const [addPlayerId, setAddPlayerId] = useState("");
+  const { playerId, setPlayerId } = useContext(AppContext);
   // let history = useHistory();
 
-  const handleChange = (e) => {
-    setAddPlayerId(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setPlayerId(e.target.value);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(process.env.BRAWLSTARS_API_KEY);
-    // console.log("process.env.BRAWLSTARS_API_KEY");
-    fetch("/api/get-player-info")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // sessionStorage.setItem(
-        //   "PlayerIdList",
-        //   JSON.stringify(data.newPlayer._id)
-        // );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // fetch("/api/get-player-info")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     // sessionStorage.setItem(
+  //     //   "PlayerIdList",
+  //     //   JSON.stringify(data.newPlayer._id)
+  //     // );
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
   };
-
+console.log(playerId)
   return (
     <Div>
       <BannerImg src={"/images/hero_bg_brawlstars_.jpg"} />
@@ -42,11 +39,14 @@ const HomePage = () => {
         <P>Enter your player id here : </P>
         <PlayerTagInput
           required
-          onChange={handleChange}
+          // onChange={handleChange}
           id="playerId"
           type="text"
           placeholder="XXXXXXXX"
-          value={addPlayerId}
+          value={playerId}
+          onChange={(e) => {
+            setPlayerId(e.target.value);
+          }}
         />
         <SubmitButton type="submit">Submit</SubmitButton>
       </InputDiv>

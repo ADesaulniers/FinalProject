@@ -13,6 +13,7 @@ express()
   // Any requests for static files will go into the public folder
   .use(express.static("public"))
 
+  // get all statistics from a specific player by their player id
   .get("/api/get-player-info", getPlayerInfo)
 
   // this is our catch all endpoint.

@@ -1,27 +1,43 @@
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
+  import { AppContext } from "./AppContext";
 
 const PlayerStats = () => {
+  const { playerInfo, setPlayerInfo } = useContext(AppContext);
 
+  useEffect(() => {
+    fetch("/api/get-player-info")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPlayerInfo(data);
+        console.log(data.playerInfo)
+        // sessionStorage.setItem(
+        //   "PlayerIdList",
+        //   JSON.stringify(data.newPlayer._id)
+        // );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    // var options = {
-    //     uri: 'https://api.brawlstars.com/v1/players/%23${PlayerId}',
-    //     qs: {
-    //         access_token: 'xxxxx xxxxx' // -> uri + '?access_token=xxxxx%20xxxxx'
-    //     },
-    //     headers: {
-    //         'User-Agent': 'Request-Promise'
-    //     },
-    //     json: true // Automatically parses the JSON string in the response
-    // };
+    //   const loggedInUser = window.sessionStorage.getItem("id");
+    //   if (loggedInUser) {
+    //     setCurrentPlayer(loggedInUser);
+    //     setLoggedIn(true);
+    //     }
+  }, []);
 
   return (
     <Div>
       <Img src={"/images/16000040.png"} />
       <StatsDiv>
-        <Stats>STATS HERE</Stats>
+        {/* <Stats>{playerInfo?.playerInfo.name}</Stats> */}
         <LeagueRankDiv>
         <RankImg src={"/images/solo_league.d5f730dfa4be7b386ac05cc200d5ab36.png"}/>
         <p> Stats </p>
+        {/* {console.log(playerInfo.playerInfo.name)}
+        <p>{playerInfo?.playerInfo.name}</p> */}
         <RankImg src={"/images/team_league.e1f08f2616b550db0214535f0439d393.png"}/>
         <p> Stats </p>
         </LeagueRankDiv>
@@ -45,6 +61,7 @@ const RankImg = styled.img`
 const Stats = styled.p`
 padding: 20px 0 0 0;
 font-weight: bolder;
+font-size: 30px;
 `
 
 const LeagueRankDiv = styled.div`
