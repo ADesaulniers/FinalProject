@@ -5,6 +5,7 @@ import GlobalStyle from "./GlobalStyle";
 // import styled from 'styled-components';
 import HomePage from "./HomePage";
 import PlayerStats from "./PlayerStats";
+import Footer from "./Footer";
 
 const App = () => {
   return (
@@ -23,8 +24,9 @@ const App = () => {
         </Route>
 
       </Switch>
+      <Footer/>
     </div>
-    // </BrowserRouter>
+    </BrowserRouter>
   );
 };
 

@@ -4,8 +4,9 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     :root {
-      --primary-color: #cc5500;
-      --accent-bg-color: rgba(204, 85, 0, 0.1);
+      /* --primary-color: #cc5500; */
+      --accent-color-red: #d6001a;
+      --accent-color-blue: #0087fa;
       --page-horizontal-padding: 20px;
       --header-height: 50px;
       --max-content-width: 1200px;
