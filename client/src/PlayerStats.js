@@ -4,9 +4,10 @@ import styled from "styled-components";
 
 const PlayerStats = () => {
   const { playerInfo, setPlayerInfo } = useContext(AppContext);
+  // const { playerId } = useContext(AppContext);
 
   useEffect(() => {
-    fetch("/api/get-player-info")
+    fetch(`/api/get-player-info`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

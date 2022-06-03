@@ -2,10 +2,10 @@ import Header from "./Header";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalStyle from "./GlobalStyle";
-// import styled from 'styled-components';
 import HomePage from "./HomePage";
 import PlayerStats from "./PlayerStats";
 import Footer from "./Footer";
+import AllGameBrawlersStats from "./AllGameBrawlersStats";
 
 const App = () => {
   return (
@@ -21,6 +21,10 @@ const App = () => {
 
         <Route exact path="/PlayerStats">
           <PlayerStats />
+        </Route>
+
+        <Route exact path="/AllGameBrawlersStats">
+          <AllGameBrawlersStats />
         </Route>
 
       </Switch>

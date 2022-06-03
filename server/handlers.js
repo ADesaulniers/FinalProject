@@ -39,8 +39,34 @@ console.log(parsedPlayerInfo)
     }
   };
 
+  const getAllGameBrawlersStats = async (req, res) => {
+    const fetchRequest = 'https://api.brawlstars.com/v1/brawlers'
+
+    try {
+      const rawBrawlersStats = await fetch(fetchRequest, { method: 'GET', 
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${process.env.BRAWLSTARS_KEY}`
+      }
+    });
+      const parsedBrawlersStats = await rawBrawlersStats.json()
+console.log(parsedBrawlersStats)
+        res
+            .status(200)
+            .json({
+              status: 200,
+              playerInfo: parsedBrawlersStats,
+            })
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ status: 500, message: "Internal server error" });
+    }
+  };
+
   module.exports = {
     getPlayerInfo,
+    getAllGameBrawlersStats,
   };
 
   

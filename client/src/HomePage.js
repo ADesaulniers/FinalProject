@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "./AppContext";
 
-// import 'dotenv/config'
 
 const HomePage = () => {
   const { playerId, setPlayerId } = useContext(AppContext);
@@ -14,20 +13,10 @@ const HomePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  // fetch("/api/get-player-info")
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //     // sessionStorage.setItem(
-  //     //   "PlayerIdList",
-  //     //   JSON.stringify(data.newPlayer._id)
-  //     // );
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
   };
+
 console.log(playerId)
+
   return (
     <Div>
       <BannerImg src={"/images/hero_bg_brawlstars_.jpg"} />
