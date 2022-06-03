@@ -1,17 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
   import { AppContext } from "./AppContext";
+  import { useParams } from "react-router-dom";
 
 const PlayerStats = () => {
   const { playerInfo, setPlayerInfo } = useContext(AppContext);
   // const { playerId } = useContext(AppContext);
+  const { playerId } = useParams();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/get-player-info`)
+    fetch(`/api/get-player-info/%23${playerId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setPlayerInfo(data);
+        setIsLoaded(true)
         console.log(data.playerInfo)
         // sessionStorage.setItem(
         //   "PlayerIdList",
@@ -27,24 +31,26 @@ const PlayerStats = () => {
     //     setCurrentPlayer(loggedInUser);
     //     setLoggedIn(true);
     //     }
-  }, []);
+  }, [playerId]);
 
   return (
     <Div>
-      <Img src={"/images/16000040.png"} />
+    {isLoaded && (
       <StatsDiv>
-        {/* <Stats>{playerInfo?.playerInfo.name}</Stats> */}
+      <Img src={"/images/16000040.png"} />
+        <Stats>{playerInfo?.playerInfo.name}</Stats>
         <LeagueRankDiv>
         <RankImg src={"/images/solo_league.d5f730dfa4be7b386ac05cc200d5ab36.png"}/>
         <p> Stats </p>
-        {/* {console.log(playerInfo.playerInfo.name)}
-        <p>{playerInfo?.playerInfo.name}</p> */}
+        {console.log(playerInfo.playerInfo.name)}
+        // <p>{playerInfo?.playerInfo.name}</p>
         <RankImg src={"/images/team_league.e1f08f2616b550db0214535f0439d393.png"}/>
         <p> Stats </p>
         </LeagueRankDiv>
       </StatsDiv>
+      )}
     </Div>
-  );
+  )
 };
 
 const Img = styled.img`

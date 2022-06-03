@@ -1,21 +1,20 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "./AppContext";
+import { useHistory } from "react-router-dom";
 
 
 const HomePage = () => {
   const { playerId, setPlayerId } = useContext(AppContext);
-  // let history = useHistory();
-
-  // const handleChange = (e) => {
-  //   setPlayerId(e.target.value);
-  // };
+  let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    history.push(`/PlayerStats/%23${playerId}`)
   };
 
-console.log(playerId)
+console.log(playerId, "))))")
 
   return (
     <Div>

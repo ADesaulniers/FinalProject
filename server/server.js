@@ -14,7 +14,7 @@ express()
   .use(express.static("public"))
 
   // get all statistics from a specific player by their player id
-  .get("/api/get-player-info", getPlayerInfo)
+  .get(`/api/get-player-info/:playerId`, getPlayerInfo)
   .get("/api/get-all-game-brawlers-stats", getAllGameBrawlersStats)
 
   // this is our catch all endpoint.

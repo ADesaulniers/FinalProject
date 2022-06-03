@@ -15,7 +15,8 @@ const { v4: uuidv4 } = require("uuid");
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const getPlayerInfo = async (req, res) => {
-  const fetchRequest = 'https://api.brawlstars.com/v1/players/%23YRQCR29J9'
+  const id = req.params.playerId
+  const fetchRequest = `https://api.brawlstars.com/v1/players/%23${id}`
 
     try {
       const rawPlayerInfo = await fetch(fetchRequest, { method: 'GET', 
