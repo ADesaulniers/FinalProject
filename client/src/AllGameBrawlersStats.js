@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const AllGameBrawlersStats = () => {
   const { allBrawlersStats, setAllBrawlersStats } = useContext(AppContext);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     fetch("/api/get-all-game-brawlers-stats")
@@ -11,7 +12,8 @@ const AllGameBrawlersStats = () => {
       .then((data) => {
         console.log(data);
         setAllBrawlersStats(data);
-        console.log(data.playerInfo.items[0])
+        setIsLoaded(true);
+        console.log(data.playerInfo.items[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -19,56 +21,81 @@ const AllGameBrawlersStats = () => {
   }, [allBrawlersStats]);
 
   return (
-    <AllGameBrawlersStatsDiv>
-        {console.log(allBrawlersStats)}
-        <Div>
-      <Img src={"/images/16000031.png"} />
-      {/* <P>Brawlers stats</P> */}
-      </Div>
-      <Div>
-      {/* <Img src={"/images/16000052.png"} /> */}
-      <P>{allBrawlersStats.playerInfo.items[0].name}</P>
-      </Div>
-      <Div>
-      {/* <Img src={"/images/16000043.png"} /> */}
-      {/* <P>Brawlers stats</P> */}
-      </Div>
-    </AllGameBrawlersStatsDiv>
+    <Div>
+      {isLoaded && (
+        <AllGameBrawlersStatsDiv>
+          <Div>
+            <Img src={"/images/16000000.png"} />
+            <Div2>
+            <P>{allBrawlersStats.playerInfo.items[0].name}</P>
+            <P>Star Power: {allBrawlersStats.playerInfo.items[0].starPowers[0].name}</P>
+            <P>Star Power: {allBrawlersStats.playerInfo.items[0].starPowers[1].name}</P>
+            <P>Gadget: {allBrawlersStats.playerInfo.items[0].gadgets[0].name}</P>
+            <P>Gadget: {allBrawlersStats.playerInfo.items[0].gadgets[1].name}</P>
+            </Div2>
+          </Div>
+          <Div>
+            <Img src={"/images/16000001.png"} />
+            <Div2>
+            <P>{allBrawlersStats.playerInfo.items[1].name}</P>
+            <P>Star Power: {allBrawlersStats.playerInfo.items[1].starPowers[0].name}</P>
+            <P>Star Power: {allBrawlersStats.playerInfo.items[1].starPowers[1].name}</P>
+            <P>Gadget: {allBrawlersStats.playerInfo.items[1].gadgets[0].name}</P>
+            <P>Gadget: {allBrawlersStats.playerInfo.items[1].gadgets[1].name}</P>
+            </Div2>
+          </Div>
+        </AllGameBrawlersStatsDiv>
+      )}
+    </Div>
   );
 };
 
 const AllGameBrawlersStatsDiv = styled.div`
- display: table;
- position: relative;
- /* align-content: stretch; */
- display: flex;
+  /* display: table;
+  position: relative; */
+  /* align-content: stretch; */
+  /* display: flex; */
 `;
 
 const Img = styled.img`
-/* position: absolute; */
-    /* width: 300px; */
-    height: 300px;
+  /* position: absolute; */
+  /* width: 300px; */
+  height: 300px;
 
   &:hover {
     cursor: pointer;
-    opacity: 0.5;
+    /* opacity: 0.5; */
+  }
+`;
+
+const Div = styled.div`
+position: relative;
+`;
+
+const Div2 = styled.div`
+position: absolute;
+    top: 0;
+    margin: 8%;
+    justify-content: right;
+    opacity: 0;
+    height: 300px;
+
+
+    &:hover {
+    /* visibility: visible; */
+    opacity: 1;
   }
 `;
 
 const P = styled.p`
-    position: absolute;
-   align-self: flex-start;
-  /* visibility: hidden;
-  opacity: 0;
-  color: red;
+padding: 5px;
+  
 
-  &:hover {
-    visibility: visible;
-    opacity: 1; */
-  /* } */
+&:hover {
+    /* visibility: visible; */
+    /* opacity: 1; */
+  }
 `;
 
-const Div = styled.div`
-`
 
 export default AllGameBrawlersStats;

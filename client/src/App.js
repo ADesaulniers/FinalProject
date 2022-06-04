@@ -19,7 +19,7 @@ const App = () => {
           <HomePage />
         </Route>
 
-        <Route exact path="/PlayerStats">
+        <Route exact path="/PlayerStats/:playerId">
           <PlayerStats />
         </Route>
 

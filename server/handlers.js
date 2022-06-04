@@ -16,7 +16,9 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const getPlayerInfo = async (req, res) => {
   const id = req.params.playerId
-  const fetchRequest = `https://api.brawlstars.com/v1/players/%23${id}`
+  const newId = id.slice(1)
+  console.log(newId)
+  const fetchRequest = `https://api.brawlstars.com/v1/players/%23${newId}`
 
     try {
       const rawPlayerInfo = await fetch(fetchRequest, { method: 'GET', 
