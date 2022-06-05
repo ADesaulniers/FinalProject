@@ -3,7 +3,12 @@
 const express = require("express");
 const morgan = require("morgan");
 
-const { getPlayerInfo, getAllGameBrawlersStats } = require("./handlers");
+const {
+  getPlayerInfo,
+  getAllGameBrawlersStats,
+  getUser,
+  addUser,
+} = require("./handlers");
 
 express()
   // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
@@ -16,6 +21,9 @@ express()
   // get all statistics from a specific player by their player id
   .get(`/api/get-player-info/:playerId`, getPlayerInfo)
   .get("/api/get-all-game-brawlers-stats", getAllGameBrawlersStats)
+
+  // Verify if a user is in the database, if not, it create a new user
+  .post("/api/verify-user/:auth0Id", getUser, addUser)
 
   // this is our catch all endpoint.
   .get("*", (req, res) => {
