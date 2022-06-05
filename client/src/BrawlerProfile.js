@@ -13,12 +13,18 @@ const BrawlerProfile = ({ brawlerData }) => {
         {/* TODO: map over starPowers array abd gadgets array to display them */}
         {starPowers.map((starPower) => {
           const { id: starPowerId, name: starPowerName } = starPower;
-          return <P key={starPowerId}>{starPowerName}</P>;
+          return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;
         })}
         {gadgets.map((gadget) => {
           const { id: gadgetId, name: gadgetName } = gadget;
-          return <P key={gadgetId}>{gadgetName}</P>;
+          return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
         })}
+        <Div3>
+          <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
+          <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
+          <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
+          <Img2 src={`/images/BrawlersStarPower/SP2-${id}.png`} />
+        </Div3>
       </Div2>
     </Div>
   );
@@ -31,17 +37,19 @@ const Div = styled.div`
 const Div2 = styled.div`
   position: absolute;
   top: 0;
-  /* margin: 60px; */
-  padding: 75px 85px;
+  padding: 75px 95px;
   justify-content: right;
   opacity: 0;
-  /* height: 300px; */
+
   &:hover {
-    /* visibility: visible; */
     opacity: 0.8;
     background-color: white;
     font-weight: bold;
   }
+`;
+
+const Div3 = styled.div`
+  padding-top: 5px;
 `;
 
 const P = styled.p`
@@ -49,16 +57,9 @@ const P = styled.p`
   font-size: 15px;
   width: 100%;
   height: 100%;
-
-  &:hover {
-    /* visibility: visible; */
-    /* opacity: 1; */
-  }
 `;
 
 const Img = styled.img`
-  /* position: absolute; */
-  /* width: 300px; */
   height: 300px;
   width: 300px;
   padding: 17px;
@@ -67,8 +68,12 @@ const Img = styled.img`
 
   &:hover {
     cursor: pointer;
-    /* opacity: 0.5; */
   }
+`;
+
+const Img2 = styled.img`
+  height: 25px;
+  width: 25px;
 `;
 
 export default BrawlerProfile;
