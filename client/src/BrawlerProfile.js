@@ -9,7 +9,7 @@ const BrawlerProfile = ({ brawlerData }) => {
     <Div>
       <Img src={`/images/BrawlersImg/${id}.png`} />
       <Div2>
-        <P>{name}</P>
+        <P1>{name}</P1>
         {/* TODO: map over starPowers array abd gadgets array to display them */}
         {starPowers.map((starPower) => {
           const { id: starPowerId, name: starPowerName } = starPower;
@@ -45,6 +45,7 @@ const Div2 = styled.div`
     opacity: 0.8;
     background-color: white;
     font-weight: bold;
+    cursor: pointer;
   }
 `;
 
@@ -53,6 +54,13 @@ const Div3 = styled.div`
 `;
 
 const P = styled.p`
+  padding: 6px;
+  font-size: 14px;
+  width: 280px;
+  height: 100%;
+`;
+
+const P1 = styled.p`
   padding: 6px;
   font-size: 15px;
   width: 100%;
