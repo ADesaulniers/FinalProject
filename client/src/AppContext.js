@@ -8,7 +8,7 @@ export const AppContextProvider = ({ children }) => {
   // const [error, setError] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [playerId, setPlayerId] = useState("");
-  const [ allBrawlersStats, setAllBrawlersStats ] = useState("");
+  const [allBrawlersStats, setAllBrawlersStats] = useState("");
 
   return (
     <AppContext.Provider
@@ -20,7 +20,7 @@ export const AppContextProvider = ({ children }) => {
         playerId,
         setPlayerId,
         allBrawlersStats,
-        setAllBrawlersStats
+        setAllBrawlersStats,
       }}
     >
       {children}

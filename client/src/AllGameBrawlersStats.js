@@ -39,17 +39,12 @@ const AllGameBrawlersStats = () => {
 };
 
 const AllGameBrawlersStatsDiv = styled.div`
-  /* display: table;
-  position: relative; */
-  /* align-content: stretch; */
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
 `;
 
 const Img = styled.img`
-  /* position: absolute; */
-  /* width: 300px; */
   height: 300px;
   width: 300px;
   padding: 17px;
@@ -58,40 +53,23 @@ const Img = styled.img`
 
   &:hover {
     cursor: pointer;
-    /* opacity: 0.5; */
   }
 `;
 
 const Div = styled.div`
   position: relative;
   width: 100vw;
+  padding-left: 70px;
 `;
 
-const Div2 = styled.div`
-  position: absolute;
-  top: 0;
-  /* margin: 60px; */
-  padding: 45px 85px;
-  justify-content: right;
-  opacity: 0;
-  /* height: 300px; */
+// const P = styled.p`
+//   padding: 6px;
+//   font-size: 15px;
 
-  &:hover {
-    /* visibility: visible; */
-    opacity: 0.8;
-    background-color: white;
-    font-weight: bold;
-  }
-`;
-
-const P = styled.p`
-  padding: 6px;
-  font-size: 15px;
-
-  &:hover {
-    /* visibility: visible; */
-    /* opacity: 1; */
-  }
-`;
+//   &:hover {
+//     /* visibility: visible; */
+//     /* opacity: 1; */
+//   }
+// `;
 
 export default AllGameBrawlersStats;

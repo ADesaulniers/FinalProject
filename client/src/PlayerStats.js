@@ -1,8 +1,13 @@
+// Module imports
 import { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { useParams } from "react-router-dom";
 
+// Local imports
+import styled from "styled-components";
+import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
+
+// Getting the player stats from Supercell API with the player Id they provided when they logged in
 const PlayerStats = () => {
   const { playerInfo, setPlayerInfo } = useContext(AppContext);
   const { playerId } = useParams();
@@ -19,42 +24,52 @@ const PlayerStats = () => {
         setPlayerInfo(data);
         setIsLoaded(true);
         console.log(data.playerInfo);
-        // sessionStorage.setItem(
-        //   "PlayerIdList",
-        //   JSON.stringify(data.newPlayer._id)
-        // );
       })
       .catch((error) => {
         console.log(error);
       });
-
-    //   const loggedInUser = window.sessionStorage.getItem("id");
-    //   if (loggedInUser) {
-    //     setCurrentPlayer(loggedInUser);
-    //     setLoggedIn(true);
-    //     }
   }, [playerId]);
 
   return (
     <Div>
       {isLoaded && (
         <StatsDiv>
+          <PlayerStatsByIdInput />
           <Img src={"/images/16000040.png"} />
           <Stats>{playerInfo?.playerInfo.name}</Stats>
           <LeagueRankDiv>
-          <RankImg
-              src={"/images/trophy.96ebb0874d0e7e7a7c235bfbb751f2cf.png"}
-            />
-            <p>Highest Trophies: {playerInfo?.playerInfo.highestTrophies}</p>
-            <RankImg
-              src={"/images/event_mode_showdown.6645d79502821e2d681b6f819a28eb12.png"}
-            />
-            <p>Solo Victories: {playerInfo?.playerInfo.soloVictories}</p>
-            <RankImg
-              src={"/images/event_mode_duo_showdown.e9ddf754c048aa63d14de7ccfd8b6ec7.png"}
-            />
-           <p>Duo Victories: {playerInfo?.playerInfo.duoVictories}</p>
-           <p>3vs3 Victories: {playerInfo?.playerInfo["3vs3Victories"]}</p>
+            <PlayerInfoDiv>
+              <RankImg
+                src={"/images/trophy.96ebb0874d0e7e7a7c235bfbb751f2cf.png"}
+              />
+              <p>Highest Trophies: {playerInfo?.playerInfo.highestTrophies}</p>
+            </PlayerInfoDiv>
+            <PlayerInfoDiv>
+              <RankImg
+                src={
+                  "/images/event_mode_showdown.6645d79502821e2d681b6f819a28eb12.png"
+                }
+              />
+              <p>Solo Victories: {playerInfo?.playerInfo.soloVictories}</p>
+            </PlayerInfoDiv>
+            <PlayerInfoDiv>
+              <RankImg
+                src={
+                  "/images/event_mode_duo_showdown.e9ddf754c048aa63d14de7ccfd8b6ec7.png"
+                }
+              />
+              <p>Duo Victories: {playerInfo?.playerInfo.duoVictories}</p>
+            </PlayerInfoDiv>
+            <PlayerInfoDiv>
+              <RankImg
+                src={"/images/3vs3.44a7c5cbb968e04bd46b5db0a98a3af7.png"}
+              />
+              <p>3vs3 Victories: {playerInfo?.playerInfo["3vs3Victories"]}</p>
+            </PlayerInfoDiv>
+            <PlayerInfoDiv>
+              <RankImg src={"/images/clan_badge_02_03.png"} />
+              <p>Club: {playerInfo?.playerInfo.club.name}</p>
+            </PlayerInfoDiv>
           </LeagueRankDiv>
         </StatsDiv>
       )}
@@ -102,5 +117,7 @@ const StatsDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const PlayerInfoDiv = styled.div``;
 
 export default PlayerStats;

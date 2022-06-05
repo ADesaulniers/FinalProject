@@ -1,16 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { AppContextProvider } from './AppContext';
+// Module imports
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { Auth0Provider } from "@auth0/auth0-react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Local imports
+import { AppContextProvider } from "./AppContext";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppContextProvider>
-    <App />
-    </AppContextProvider>
+    <Auth0Provider
+      domain="dev-k3i5ui95.us.auth0.com"
+      clientId="na3WcbggISMqBwggtyYU1eScbgV2JC5g"
+      redirectUri={window.location.origin}
+    >
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    </Auth0Provider>
   </React.StrictMode>
 );
 

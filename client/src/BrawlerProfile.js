@@ -1,3 +1,4 @@
+// Local imports
 import styled from "styled-components";
 
 const BrawlerProfile = ({ brawlerData }) => {
@@ -6,17 +7,17 @@ const BrawlerProfile = ({ brawlerData }) => {
 
   return (
     <Div>
-      <Img src={`/images/${id}.png`} />
+      <Img src={`/images/BrawlersImg/${id}.png`} />
       <Div2>
         <P>{name}</P>
         {/* TODO: map over starPowers array abd gadgets array to display them */}
         {starPowers.map((starPower) => {
           const { id: starPowerId, name: starPowerName } = starPower;
-          return <P>{starPowerName}</P>;
+          return <P key={starPowerId}>{starPowerName}</P>;
         })}
         {gadgets.map((gadget) => {
           const { id: gadgetId, name: gadgetName } = gadget;
-          return <P>{gadgetName}</P>;
+          return <P key={gadgetId}>{gadgetName}</P>;
         })}
       </Div2>
     </Div>
@@ -31,7 +32,7 @@ const Div2 = styled.div`
   position: absolute;
   top: 0;
   /* margin: 60px; */
-  padding: 45px 85px;
+  padding: 75px 85px;
   justify-content: right;
   opacity: 0;
   /* height: 300px; */
