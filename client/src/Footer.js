@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { AiFillYoutube, AiFillFacebook } from "react-icons/ai";
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
     <HeaderMainDiv>
-      <LogoYoutube>
+      <LogoYoutube href="https://www.youtube.com/c/brawlstars">
         <AiFillYoutube size="20px" />
       </LogoYoutube>
-      <LogoFacebook to="https://fb.gg/brawlstars">
+      <LogoFacebook href="https://fb.gg/brawlstars">
         <AiFillFacebook size="20px" />
       </LogoFacebook>
     </HeaderMainDiv>
@@ -24,9 +24,10 @@ const HeaderMainDiv = styled.div`
   display: flex;
 `;
 
-const LogoYoutube = styled.p`
+const LogoYoutube = styled.a`
   display: inline-block;
   padding: 0 10px;
+  color: white;
 
   &:hover {
     cursor: pointer;
@@ -34,9 +35,10 @@ const LogoYoutube = styled.p`
   }
 `;
 
-const LogoFacebook = styled.p`
+const LogoFacebook = styled.a`
   display: inline-block;
   padding: 0 10px;
+  color: white;
 
   &:hover {
     cursor: pointer;

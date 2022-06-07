@@ -48,7 +48,7 @@ const P = styled.p`
 `;
 
 const InputDiv = styled.form`
-  width: fit-content;
+  width: 300px;
   padding: 20px;
   background-color: black;
   border: 3px solid white;
@@ -57,6 +57,7 @@ const InputDiv = styled.form`
   z-index: 2;
   position: absolute;
   top: 50%;
+  text-align: center;
 `;
 
 const PlayerTagInput = styled.input`

@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const {
   getPlayerInfo,
   getAllGameBrawlersStats,
-  getUser,
   addUser,
 } = require("./handlers");
 
@@ -22,8 +21,8 @@ express()
   .get(`/api/get-player-info/:playerId`, getPlayerInfo)
   .get("/api/get-all-game-brawlers-stats", getAllGameBrawlersStats)
 
-  // Verify if a user is in the database, if not, it create a new user
-  .post("/api/verify-user/:auth0Id", getUser, addUser)
+  // Add user infos to database
+  .post("/api/add-user", addUser)
 
   // this is our catch all endpoint.
   .get("*", (req, res) => {

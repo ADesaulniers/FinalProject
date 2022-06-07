@@ -16,7 +16,6 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 // This is to get all stats from a player by his game Id
-
 const getPlayerInfo = async (req, res) => {
   const id = req.params.playerId;
   const newId = id.slice(1);
@@ -45,7 +44,6 @@ const getPlayerInfo = async (req, res) => {
 };
 
 // This is to get all of the brawlers stats from Supercell
-
 const getAllGameBrawlersStats = async (req, res) => {
   const fetchRequest = "https://api.brawlstars.com/v1/brawlers";
 
@@ -70,17 +68,19 @@ const getAllGameBrawlersStats = async (req, res) => {
   }
 };
 
+// Add user infos to mongoDB
 const addUser = async (req, res) => {
-  // TODO: Add user to MongoDB
   try {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     const db = client.db("FinalProject");
-    const { name, email } = req.body;
-    const newUser = { ...req.body, _id: uuidv4() };
-
-    const makeNewUser = await db.collection("Users").insertOne(newUser);
-
+    const newUser = { ...req.body };
+    const query = { _id: req.body._id };
+    const update = { $set: newUser };
+    const option = { upsert: true };
+    const makeNewUser = await db
+      .collection("Users")
+      .updateOne(query, update, option);
     makeNewUser
       ? res.status(200).json({
           status: 200,
@@ -94,38 +94,8 @@ const addUser = async (req, res) => {
   }
 };
 
-const getUser = async (req, res, next) => {
-  try {
-    const client = new MongoClient(MONGO_URI, options);
-    await client.connect();
-    const db = client.db("FinalProject");
-
-    const { auth0Id } = req.params;
-
-    // Check if user with this auth0Id already exist in MongoDB
-    const result = await db.collection("Users").findOne({ _id: auth0Id });
-
-    // If user exist, respond with status 200 and the user's data
-
-    // If user does not exist pass the request to the next handler
-
-    // TODO: add error handling
-
-    console.log(result);
-    // res.send(200);
-
-    result ? res.status(200).json({ status: 200, data: result }) : next();
-
-    client.close();
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ status: 500, message: "Internal server error" });
-  }
-};
-
 module.exports = {
   getPlayerInfo,
   getAllGameBrawlersStats,
-  getUser,
   addUser,
 };
