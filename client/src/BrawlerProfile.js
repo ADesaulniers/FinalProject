@@ -10,7 +10,7 @@ const BrawlerProfile = ({ brawlerData }) => {
       <Img src={`/images/BrawlersImg/${id}.png`} />
       <Div2>
         <P1>{name}</P1>
-        {/* TODO: map over starPowers array abd gadgets array to display them */}
+        {/* map over starPowers array abd gadgets array to display them */}
         {starPowers.map((starPower) => {
           const { id: starPowerId, name: starPowerName } = starPower;
           return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;

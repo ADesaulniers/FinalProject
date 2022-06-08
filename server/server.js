@@ -7,6 +7,7 @@ const {
   getPlayerInfo,
   getAllGameBrawlersStats,
   addUser,
+  updateUser,
 } = require("./handlers");
 
 express()
@@ -23,6 +24,7 @@ express()
 
   // Add user infos to database
   .post("/api/add-user", addUser)
+  .put("/api/add-player-tag", updateUser)
 
   // this is our catch all endpoint.
   .get("*", (req, res) => {

@@ -11,7 +11,6 @@ const PlayerStats = () => {
   const { playerInfo, setPlayerInfo } = useContext(AppContext);
   const { playerId } = useParams();
   const currentId = playerId.slice(3);
-  console.log(currentId);
   const [isLoaded, setIsLoaded] = useState(false);
   console.log(playerId, "playerId");
 

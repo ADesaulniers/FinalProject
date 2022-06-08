@@ -9,6 +9,7 @@ export const AppContextProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [playerId, setPlayerId] = useState("");
   const [allBrawlersStats, setAllBrawlersStats] = useState("");
+  const [friendPlayerId, setFriendPlayerId] = useState("");
 
   return (
     <AppContext.Provider
@@ -21,6 +22,8 @@ export const AppContextProvider = ({ children }) => {
         setPlayerId,
         allBrawlersStats,
         setAllBrawlersStats,
+        friendPlayerId,
+        setFriendPlayerId,
       }}
     >
       {children}

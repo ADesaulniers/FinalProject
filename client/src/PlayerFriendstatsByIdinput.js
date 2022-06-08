@@ -7,8 +7,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Local imports
 import styled from "styled-components";
 
-const PlayerStatsByIdInput = () => {
-  const { playerId, setPlayerId } = useContext(AppContext);
+const PlayerFriendStatsByIdInput = () => {
+  const { friendPlayerId, setFriendPlayerId } = useContext(AppContext);
   let history = useHistory();
 
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,8 +18,8 @@ const PlayerStatsByIdInput = () => {
 
     if (isAuthenticated) {
       fetch("/api/add-player-tag", {
-        method: "PUT",
-        body: JSON.stringify({ ...user, playerTag: playerId, _id: user.sub }),
+        method: "POST",
+        body: JSON.stringify({ ...user, playerFriendTag: friendPlayerId }),
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -31,10 +31,10 @@ const PlayerStatsByIdInput = () => {
         });
     }
 
-    history.push(`/PlayerStats/%23${playerId}`);
+    history.push(`/PlayerStats/%23${friendPlayerId}`);
   };
 
-  console.log(playerId, "))))");
+  console.log(friendPlayerId, "))))");
 
   return (
     <InputDiv
@@ -42,15 +42,15 @@ const PlayerStatsByIdInput = () => {
         handleSubmit(e);
       }}
     >
-      <P>Enter your player id here : </P>
+      <P>Enter your friend player id here : </P>
       <PlayerTagInput
         required
-        id="playerId"
+        id="friendPlayerId"
         type="text"
         placeholder="XXXXXXXX"
-        value={playerId}
+        value={friendPlayerId}
         onChange={(e) => {
-          setPlayerId(e.target.value);
+          setFriendPlayerId(e.target.value);
         }}
       />
       <SubmitButton type="submit">Submit</SubmitButton>
@@ -102,4 +102,4 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default PlayerStatsByIdInput;
+export default PlayerFriendStatsByIdInput;

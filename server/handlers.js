@@ -94,8 +94,37 @@ const addUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+
+    await client.connect();
+    const db = client.db("FinalProject");
+    const query = { _id: req.body._id };
+    console.log(req.body);
+    const playerTag = { ...req.body };
+    const update = { $set: playerTag };
+    const option = { upsert: true };
+
+    const addPlayerTag = await db
+      .collection("Users")
+      .updateOne(query, update, option);
+    addPlayerTag
+      ? res.status(200).json({
+          status: 200,
+          message: "Player's tag added!",
+        })
+      : res.status(404).json({ status: 404, message: "User not found" });
+    client.close();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+};
+
 module.exports = {
   getPlayerInfo,
   getAllGameBrawlersStats,
   addUser,
+  updateUser,
 };

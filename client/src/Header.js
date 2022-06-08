@@ -12,7 +12,6 @@ import LogoutButton from "./Auth0/LogoutButton";
 const Header = () => {
   const { playerId } = useContext(AppContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(playerId, "header");
 
   return (
     <Div>

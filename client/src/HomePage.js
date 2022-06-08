@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 // Local imports
 import styled from "styled-components";
-import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
 
 const HomePage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -33,7 +32,6 @@ const HomePage = () => {
   return (
     <Div>
       <BannerImg src={"/images/hero_bg_brawlstars_.jpg"} />
-      <PlayerStatsByIdInput />
     </Div>
   );
 };

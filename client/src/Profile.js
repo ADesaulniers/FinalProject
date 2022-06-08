@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Local imports
 import styled from "styled-components";
 import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
+import PlayerFriendStatsByIdInput from "./PlayerFriendstatsByIdinput";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -25,10 +26,12 @@ const Profile = () => {
             <ProfileImg src={user.picture} alt={user.name} />
             <Name>{user.name}</Name>
             <Email>{user.email}</Email>
+            <p>Tag #: {user.playerTag}</p>
           </Div3>
         )}
         <Div4>
           <PlayerStatsByIdInput />
+          {/* <PlayerFriendStatsByIdInput /> */}
         </Div4>
       </ProfileInfoDiv>
     </Div>

@@ -13,10 +13,8 @@ const AllGameBrawlersStats = () => {
     fetch("/api/get-all-game-brawlers-stats")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAllBrawlersStats(data.playerInfo.items); // This is only the array of the brawlers
         setIsLoaded(true);
-        console.log(data.playerInfo.items[0]);
       })
       .catch((error) => {
         console.log(error);
