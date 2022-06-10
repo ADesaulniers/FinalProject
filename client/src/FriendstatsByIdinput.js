@@ -16,21 +16,6 @@ const FriendStatsByIdInput = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isAuthenticated) {
-      fetch("/api/add-user", {
-        method: "POST",
-        body: JSON.stringify({ ...user, playerFriendTag: friendPlayerId }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
-    }
-
     history.push(`/FriendStats/%23${friendPlayerId}`);
   };
 
@@ -47,7 +32,7 @@ const FriendStatsByIdInput = () => {
         required
         id="friendPlayerId"
         type="text"
-        placeholder="#XXXXXXXX"
+        placeholder="XXXXXXXX"
         value={friendPlayerId}
         onChange={(e) => {
           setFriendPlayerId(e.target.value);

@@ -5,17 +5,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Local imports
 import styled from "styled-components";
 import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
-import FriendStatsByIdInput from "./FriendstatsByIdinput";
 import { AppContext } from "./AppContext";
+import FriendStatsByIdInput from "./FriendStatsByIdInput";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { userInformation, setUserInformation } = useContext(AppContext);
+  const { userInformation, setUserInformation, playerId } =
+    useContext(AppContext);
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
-
+  console.log(playerId);
   return (
     <Div>
       <Div2>
@@ -28,17 +29,11 @@ const Profile = () => {
             <ProfileImg src={user.picture} alt={user.name} />
             <Name>{user.name}</Name>
             <Email>{user.email}</Email>
-            <p>Player Tag #: {userInformation.data[0].playerTag}</p>
+            <p>Player Tag #: {playerId}</p>
           </Div3>
         )}
         <Div4>
-          {/* {userInformation.data[0].playerTag ? (
-            <PlayerFriendStatsByIdInput />
-          ) : (
-            <PlayerStatsByIdInput />
-          )} */}
-
-          <FriendStatsByIdInput />
+          {playerId ? <FriendStatsByIdInput /> : <PlayerStatsByIdInput />}
         </Div4>
       </ProfileInfoDiv>
     </Div>

@@ -19,12 +19,12 @@ const Header = () => {
     <Div>
       <HeaderMainDiv>
         <Logo to="/">BRAWL STARS Statistics</Logo>
-        {isAuthenticated ? (
+        {isAuthenticated && playerId ? (
           <MyStatsNav to={`/PlayerStats/%23${playerId}`}>My Stats</MyStatsNav>
         ) : (
           ""
         )}
-        {isAuthenticated ? (
+        {isAuthenticated && friendPlayerId ? (
           <MyStatsNav to={`/FriendStats/%23${friendPlayerId}`}>
             Friend Stats
           </MyStatsNav>

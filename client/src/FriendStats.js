@@ -9,8 +9,7 @@ import styled from "styled-components";
 const FriendStats = () => {
   const { friendInfo, setFriendInfo } = useContext(AppContext);
   const [isLoaded, setIsLoaded] = useState(false);
-  const { friendPlayerId } = useContext(AppContext);
-  //   const friendId = friendPlayerId.slice(1);
+  const friendPlayerId = "9PGLU0YPC";
 
   useEffect(() => {
     fetch(`/api/get-player-info/%23${friendPlayerId}`)
@@ -25,10 +24,11 @@ const FriendStats = () => {
       });
   }, [friendPlayerId]);
 
+  console.log(friendInfo);
   return (
     <Div>
       <Div2>
-        <Img src={"/images/BrawlersImg/16000054.png"} />
+        <Img src={"/images/BrawlersImg/16000028.png"} />
       </Div2>
 
       {isLoaded && (

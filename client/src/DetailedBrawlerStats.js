@@ -1,30 +1,23 @@
 // Local imports
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 
-const BrawlerProfile = ({ brawlerData }) => {
-  // Destructure the brawlerData object
+const DetailedBrawlerStats = ({ brawlerData }) => {
   const { id, name, starPowers, gadgets } = brawlerData;
-  let history = useHistory();
-
-  const brawlerClick = () => {
-    history.push("/DetailedBrawlerStats");
-  };
-
+  console.log(id);
   return (
-    <Div onClick={brawlerClick}>
+    <Div>
       <Img src={`/images/BrawlersImg/${id}.png`} />
       <Div2>
         <P1>{name}</P1>
         {/* map over starPowers array and gadgets array to display them */}
-        {starPowers.map((starPower) => {
+        {/* {starPowers.map((starPower) => {
           const { id: starPowerId, name: starPowerName } = starPower;
           return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;
-        })}
-        {gadgets.map((gadget) => {
+        })} */}
+        {/* {gadgets.map((gadget) => {
           const { id: gadgetId, name: gadgetName } = gadget;
           return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
-        })}
+        })} */}
         <Div3>
           <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
           <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
@@ -93,4 +86,4 @@ const Img2 = styled.img`
   width: 25px;
 `;
 
-export default BrawlerProfile;
+export default DetailedBrawlerStats;

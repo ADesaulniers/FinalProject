@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const AppContext = createContext(null);
 
@@ -8,18 +9,22 @@ export const AppContextProvider = ({ children }) => {
   const [playerId, setPlayerId] = useState("");
   const [allBrawlersStats, setAllBrawlersStats] = useState("");
   const [userInformation, setUserInformation] = useState("");
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [friendPlayerId, setFriendPlayerId] = useState("");
+  const [friendInfo, setFriendInfo] = useState("");
 
   useEffect(() => {
     fetch("/api/get-user-info")
       .then((res) => res.json())
       .then((data) => {
         setUserInformation(data);
+        setPlayerId(data.data[0].playerTag);
         // setIsLoaded(true)
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AppContext.Provider
@@ -34,6 +39,10 @@ export const AppContextProvider = ({ children }) => {
         setAllBrawlersStats,
         userInformation,
         setUserInformation,
+        friendPlayerId,
+        setFriendPlayerId,
+        friendInfo,
+        setFriendInfo,
       }}
     >
       {children}

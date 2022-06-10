@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { AiFillYoutube, AiFillFacebook } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (

@@ -35,7 +35,7 @@ const PlayerStatsByIdInput = () => {
   };
 
   return (
-    <InputDiv
+    <InputForm
       onSubmit={(e) => {
         handleSubmit(e);
       }}
@@ -45,14 +45,14 @@ const PlayerStatsByIdInput = () => {
         required
         id="playerId"
         type="text"
-        placeholder="#XXXXXXXX"
+        placeholder="XXXXXXXX"
         value={playerId}
         onChange={(e) => {
           setPlayerId(e.target.value);
         }}
       />
       <SubmitButton type="submit">Submit</SubmitButton>
-    </InputDiv>
+    </InputForm>
   );
 };
 
@@ -62,7 +62,7 @@ const P = styled.p`
   padding-bottom: 5px;
 `;
 
-const InputDiv = styled.form`
+const InputForm = styled.form`
   width: 300px;
   padding: 20px;
   background-color: black;
