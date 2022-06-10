@@ -12,12 +12,25 @@ import LogoutButton from "./Auth0/LogoutButton";
 const Header = () => {
   const { playerId } = useContext(AppContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const { playerInfo, setPlayerInfo } = useContext(AppContext);
+  const { friendPlayerId, setFriendPlayerId } = useContext(AppContext);
 
   return (
     <Div>
       <HeaderMainDiv>
         <Logo to="/">BRAWL STARS Statistics</Logo>
-        <MyStatsNav to={`/PlayerStats/%23${playerId}`}>My Stats</MyStatsNav>
+        {isAuthenticated ? (
+          <MyStatsNav to={`/PlayerStats/%23${playerId}`}>My Stats</MyStatsNav>
+        ) : (
+          ""
+        )}
+        {isAuthenticated ? (
+          <MyStatsNav to={`/FriendStats/%23${friendPlayerId}`}>
+            Friend Stats
+          </MyStatsNav>
+        ) : (
+          ""
+        )}
         <AllBrawlersNav to="/AllGameBrawlersStats">All Brawlers</AllBrawlersNav>
         {isAuthenticated ? <ProfileNav to="/profile">Profile</ProfileNav> : ""}
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}

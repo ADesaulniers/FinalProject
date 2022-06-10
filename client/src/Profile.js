@@ -1,14 +1,16 @@
 // Module imports
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Local imports
 import styled from "styled-components";
 import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
-import PlayerFriendStatsByIdInput from "./PlayerFriendstatsByIdinput";
+import FriendStatsByIdInput from "./FriendstatsByIdinput";
+import { AppContext } from "./AppContext";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const { userInformation, setUserInformation } = useContext(AppContext);
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -26,12 +28,17 @@ const Profile = () => {
             <ProfileImg src={user.picture} alt={user.name} />
             <Name>{user.name}</Name>
             <Email>{user.email}</Email>
-            <p>Tag #: {user.playerTag}</p>
+            <p>Player Tag #: {userInformation.data[0].playerTag}</p>
           </Div3>
         )}
         <Div4>
-          <PlayerStatsByIdInput />
-          {/* <PlayerFriendStatsByIdInput /> */}
+          {/* {userInformation.data[0].playerTag ? (
+            <PlayerFriendStatsByIdInput />
+          ) : (
+            <PlayerStatsByIdInput />
+          )} */}
+
+          <FriendStatsByIdInput />
         </Div4>
       </ProfileInfoDiv>
     </Div>
@@ -76,16 +83,17 @@ const Div3 = styled.div`
 
 const Div4 = styled.div`
   position: absolute;
+  padding-top: 50px;
 `;
 
 const ProfileInfoDiv = styled.div`
-  width: 100%;
+  width: fit-content;
   height: 100%;
   justify-content: center;
   align-items: center;
   margin-left: 850px;
-  margin-bottom: 180px;
-  padding-top: 180px;
+  margin-bottom: 210px;
+  padding-top: 135px;
 `;
 
 export default Profile;

@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Local imports
 import styled from "styled-components";
 
-const PlayerFriendStatsByIdInput = () => {
+const FriendStatsByIdInput = () => {
   const { friendPlayerId, setFriendPlayerId } = useContext(AppContext);
   let history = useHistory();
 
@@ -17,7 +17,7 @@ const PlayerFriendStatsByIdInput = () => {
     e.preventDefault();
 
     if (isAuthenticated) {
-      fetch("/api/add-player-tag", {
+      fetch("/api/add-user", {
         method: "POST",
         body: JSON.stringify({ ...user, playerFriendTag: friendPlayerId }),
         headers: {
@@ -31,7 +31,7 @@ const PlayerFriendStatsByIdInput = () => {
         });
     }
 
-    history.push(`/PlayerStats/%23${friendPlayerId}`);
+    history.push(`/FriendStats/%23${friendPlayerId}`);
   };
 
   console.log(friendPlayerId, "))))");
@@ -47,7 +47,7 @@ const PlayerFriendStatsByIdInput = () => {
         required
         id="friendPlayerId"
         type="text"
-        placeholder="XXXXXXXX"
+        placeholder="#XXXXXXXX"
         value={friendPlayerId}
         onChange={(e) => {
           setFriendPlayerId(e.target.value);
@@ -102,4 +102,4 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default PlayerFriendStatsByIdInput;
+export default FriendStatsByIdInput;

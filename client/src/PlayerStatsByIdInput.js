@@ -10,7 +10,7 @@ import styled from "styled-components";
 const PlayerStatsByIdInput = () => {
   const { playerId, setPlayerId } = useContext(AppContext);
   let history = useHistory();
-
+  const { userInformation, setUserInformation } = useContext(AppContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const handleSubmit = (e) => {
@@ -31,10 +31,8 @@ const PlayerStatsByIdInput = () => {
         });
     }
 
-    history.push(`/PlayerStats/%23${playerId}`);
+    history.push(`/PlayerStats/%23${userInformation.data[0].playerTag}`);
   };
-
-  console.log(playerId, "))))");
 
   return (
     <InputDiv
@@ -47,7 +45,7 @@ const PlayerStatsByIdInput = () => {
         required
         id="playerId"
         type="text"
-        placeholder="XXXXXXXX"
+        placeholder="#XXXXXXXX"
         value={playerId}
         onChange={(e) => {
           setPlayerId(e.target.value);

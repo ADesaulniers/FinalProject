@@ -47,27 +47,16 @@ const Img = styled.img`
   width: 300px;
   padding: 17px;
   object-fit: cover;
-  /* border: 5px solid black; */
 
   &:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 `;
 
 const Div = styled.div`
   position: relative;
-  width: 100vw;
+  width: fit-content;
   padding-left: 70px;
 `;
-
-// const P = styled.p`
-//   padding: 6px;
-//   font-size: 15px;
-
-//   &:hover {
-//     /* visibility: visible; */
-//     /* opacity: 1; */
-//   }
-// `;
 
 export default AllGameBrawlersStats;

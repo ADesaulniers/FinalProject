@@ -1,46 +1,45 @@
 // Module imports
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./AppContext";
-import { useParams } from "react-router-dom";
 
 // Local imports
 import styled from "styled-components";
 
 // Getting the player stats from Supercell API with the player Id they provided when they logged in
-const PlayerStats = () => {
-  const { playerInfo, setPlayerInfo } = useContext(AppContext);
-  const { playerId } = useParams();
+const FriendStats = () => {
+  const { friendInfo, setFriendInfo } = useContext(AppContext);
   const [isLoaded, setIsLoaded] = useState(false);
-  const { userInformation, setUserInformation } = useContext(AppContext);
+  const { friendPlayerId } = useContext(AppContext);
+  //   const friendId = friendPlayerId.slice(1);
 
   useEffect(() => {
-    fetch(`/api/get-player-info/%23${userInformation.data[0].playerTag}`)
+    fetch(`/api/get-player-info/%23${friendPlayerId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setPlayerInfo(data);
+        setFriendInfo(data);
         setIsLoaded(true);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [playerId]);
+  }, [friendPlayerId]);
 
   return (
     <Div>
       <Div2>
-        <Img src={"/images/BrawlersImg/16000040.png"} />
+        <Img src={"/images/BrawlersImg/16000054.png"} />
       </Div2>
 
       {isLoaded && (
         <StatsDiv>
-          <Stats>{playerInfo?.playerInfo.name}</Stats>
+          <Stats>{friendInfo?.playerInfo.name}</Stats>
           <PlayerInfoDiv>
             <p>
               <RankImg
                 src={"/images/trophy.96ebb0874d0e7e7a7c235bfbb751f2cf.png"}
               />
-              Highest Trophies: {playerInfo?.playerInfo.highestTrophies}
+              Highest Trophies: {friendInfo?.playerInfo.highestTrophies}
             </p>
           </PlayerInfoDiv>
           <PlayerInfoDiv>
@@ -50,7 +49,7 @@ const PlayerStats = () => {
                   "/images/event_mode_showdown.6645d79502821e2d681b6f819a28eb12.png"
                 }
               />{" "}
-              Solo Victories: {playerInfo?.playerInfo.soloVictories}
+              Solo Victories: {friendInfo?.playerInfo.soloVictories}
             </p>
           </PlayerInfoDiv>
           <PlayerInfoDiv>
@@ -60,7 +59,7 @@ const PlayerStats = () => {
                   "/images/event_mode_duo_showdown.e9ddf754c048aa63d14de7ccfd8b6ec7.png"
                 }
               />{" "}
-              Duo Victories: {playerInfo?.playerInfo.duoVictories}
+              Duo Victories: {friendInfo?.playerInfo.duoVictories}
             </p>
           </PlayerInfoDiv>
           <PlayerInfoDiv>
@@ -68,13 +67,13 @@ const PlayerStats = () => {
               <RankImg
                 src={"/images/3vs3.44a7c5cbb968e04bd46b5db0a98a3af7.png"}
               />{" "}
-              3vs3 Victories: {playerInfo?.playerInfo["3vs3Victories"]}
+              3vs3 Victories: {friendInfo?.playerInfo["3vs3Victories"]}
             </p>
           </PlayerInfoDiv>
           <PlayerInfoDiv>
             <p>
               <RankImgBadge src={"/images/clan_badge_02_03.png"} /> Club:{" "}
-              {playerInfo?.playerInfo.club.name}
+              {friendInfo?.playerInfo.club.name}
             </p>
           </PlayerInfoDiv>
         </StatsDiv>
@@ -128,4 +127,4 @@ const PlayerInfoDiv = styled.div`
   padding: 10px 0;
 `;
 
-export default PlayerStats;
+export default FriendStats;

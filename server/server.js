@@ -8,6 +8,7 @@ const {
   getAllGameBrawlersStats,
   addUser,
   updateUser,
+  getUserInfo,
 } = require("./handlers");
 
 express()
@@ -20,6 +21,7 @@ express()
 
   // get all statistics from a specific player by their player id
   .get(`/api/get-player-info/:playerId`, getPlayerInfo)
+  .get("/api/get-user-info", getUserInfo)
   .get("/api/get-all-game-brawlers-stats", getAllGameBrawlersStats)
 
   // Add user infos to database

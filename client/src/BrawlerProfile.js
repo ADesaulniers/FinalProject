@@ -10,7 +10,7 @@ const BrawlerProfile = ({ brawlerData }) => {
       <Img src={`/images/BrawlersImg/${id}.png`} />
       <Div2>
         <P1>{name}</P1>
-        {/* map over starPowers array abd gadgets array to display them */}
+        {/* map over starPowers array and gadgets array to display them */}
         {starPowers.map((starPower) => {
           const { id: starPowerId, name: starPowerName } = starPower;
           return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;
@@ -32,12 +32,14 @@ const BrawlerProfile = ({ brawlerData }) => {
 
 const Div = styled.div`
   position: relative;
+  width: fit-content;
 `;
 
 const Div2 = styled.div`
   position: absolute;
   top: 0;
-  padding: 75px 95px;
+  padding: 75px 60px;
+  width: fit-content;
   justify-content: right;
   opacity: 0;
 
@@ -45,12 +47,13 @@ const Div2 = styled.div`
     opacity: 0.8;
     background-color: white;
     font-weight: bold;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 `;
 
 const Div3 = styled.div`
   padding-top: 5px;
+  width: fit-content;
 `;
 
 const P = styled.p`
@@ -75,7 +78,7 @@ const Img = styled.img`
   /* border: 5px solid black; */
 
   &:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 `;
 

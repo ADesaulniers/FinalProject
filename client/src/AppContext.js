@@ -4,12 +4,22 @@ export const AppContext = createContext(null);
 
 export const AppContextProvider = ({ children }) => {
   const [playerInfo, setPlayerInfo] = useState("");
-  //   const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [playerId, setPlayerId] = useState("");
   const [allBrawlersStats, setAllBrawlersStats] = useState("");
-  const [friendPlayerId, setFriendPlayerId] = useState("");
+  const [userInformation, setUserInformation] = useState("");
+
+  useEffect(() => {
+    fetch("/api/get-user-info")
+      .then((res) => res.json())
+      .then((data) => {
+        setUserInformation(data);
+        // setIsLoaded(true)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <AppContext.Provider
@@ -22,8 +32,8 @@ export const AppContextProvider = ({ children }) => {
         setPlayerId,
         allBrawlersStats,
         setAllBrawlersStats,
-        friendPlayerId,
-        setFriendPlayerId,
+        userInformation,
+        setUserInformation,
       }}
     >
       {children}

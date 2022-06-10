@@ -8,14 +8,33 @@ const options = {
   useUnifiedTopology: true,
 };
 
-// use this package to generate unique ids: https://www.npmjs.com/package/uuid
-const { v4: uuidv4 } = require("uuid");
-
 //import node fetch
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-// This is to get all stats from a player by his game Id
+// Get user information from MongoDB
+const getUserInfo = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  try {
+    const db = client.db("FinalProject");
+    const userData = await db.collection("Users").find().toArray();
+    const result = userData.map((data) => {
+      return data;
+    });
+    if (result.length === 0) {
+      res.status(404).json({ status: 404, message: "No user data found" });
+    } else {
+      res.status(200).json({ status: 200, data: result });
+    }
+    client.close();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+};
+
+// This is to get all stats from a player by his game Id in the Brawl Stars API
 const getPlayerInfo = async (req, res) => {
   const id = req.params.playerId;
   const newId = id.slice(1);
@@ -127,4 +146,5 @@ module.exports = {
   getAllGameBrawlersStats,
   addUser,
   updateUser,
+  getUserInfo,
 };
