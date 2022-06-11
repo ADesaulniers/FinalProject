@@ -28,7 +28,7 @@ const Profile = () => {
             <ProfileImg src={user.picture} alt={user.name} />
             <Name>{user.name}</Name>
             <Email>{user.email}</Email>
-            <p>Player Tag #: {playerId}</p>
+            <p>Player Tag #: {userInformation.}</p>
           </Div3>
         )}
         <Div4>
