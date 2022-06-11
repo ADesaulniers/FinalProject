@@ -19,7 +19,6 @@ export const AppContextProvider = ({ children }) => {
       .then((data) => {
         setUserInformation(data);
         setPlayerId(data.data[0].playerTag);
-        // setIsLoaded(true)
       })
       .catch((error) => {
         console.log(error);

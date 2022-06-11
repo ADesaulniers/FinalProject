@@ -12,6 +12,8 @@ import Footer from "./Footer";
 import AllGameBrawlersStats from "./AllGameBrawlersStats";
 import Profile from "./Profile";
 import FriendStats from "./FriendStats";
+import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
+import FriendStatsByIdInput from "./FriendStatsByIdInput";
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -44,6 +46,14 @@ const App = () => {
 
           <Route exact path="/profile">
             <Profile />
+          </Route>
+
+          <Route path="/PlayerStatsByInput/:id">
+            <PlayerStatsByIdInput />
+          </Route>
+
+          <Route path="/FriendStatsByInput/:id">
+            <FriendStatsByIdInput />
           </Route>
         </Switch>
         <Footer />

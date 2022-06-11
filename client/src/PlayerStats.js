@@ -11,10 +11,10 @@ const PlayerStats = () => {
   const { playerInfo, setPlayerInfo } = useContext(AppContext);
   const { playerId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
-  const { userInformation, setUserInformation } = useContext(AppContext);
+  const { userInformation } = useContext(AppContext);
 
   useEffect(() => {
-    fetch(`/api/get-player-info/%23${userInformation.data[0].playerTag}`)
+    fetch(`/api/get-player-info/%23${playerId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

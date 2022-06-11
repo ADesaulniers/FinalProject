@@ -9,7 +9,7 @@ import styled from "styled-components";
 const FriendStats = () => {
   const { friendInfo, setFriendInfo } = useContext(AppContext);
   const [isLoaded, setIsLoaded] = useState(false);
-  const friendPlayerId = "9PGLU0YPC";
+  const { friendPlayerId, setFriendPlayerId } = useContext(AppContext);
 
   useEffect(() => {
     fetch(`/api/get-player-info/%23${friendPlayerId}`)

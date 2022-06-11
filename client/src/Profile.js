@@ -10,8 +10,7 @@ import FriendStatsByIdInput from "./FriendStatsByIdInput";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { userInformation, setUserInformation, playerId } =
-    useContext(AppContext);
+  const { userInformation, playerId } = useContext(AppContext);
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -32,9 +31,9 @@ const Profile = () => {
             <p>Player Tag #: {playerId}</p>
           </Div3>
         )}
-        <Div4>
-          {playerId ? <FriendStatsByIdInput /> : <PlayerStatsByIdInput />}
-        </Div4>
+        <Div4></Div4>
+        <PlayerStatsByIdInput />
+        <FriendStatsByIdInput />
       </ProfileInfoDiv>
     </Div>
   );

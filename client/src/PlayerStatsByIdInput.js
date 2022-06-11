@@ -30,26 +30,24 @@ const PlayerStatsByIdInput = () => {
           console.log(data);
         });
     }
+    history.push(`/PlayerStats/%23${playerId}`);
+  };
 
-    history.push(`/PlayerStats/%23${userInformation.data[0].playerTag}`);
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(e);
+    setPlayerId(e.target.value);
   };
 
   return (
-    <InputForm
-      onSubmit={(e) => {
-        handleSubmit(e);
-      }}
-    >
+    <InputForm onSubmit={handleSubmit}>
       <P>Enter your player id here : </P>
       <PlayerTagInput
-        required
         id="playerId"
         type="text"
         placeholder="XXXXXXXX"
         value={playerId}
-        onChange={(e) => {
-          setPlayerId(e.target.value);
-        }}
+        onChange={handleChange}
       />
       <SubmitButton type="submit">Submit</SubmitButton>
     </InputForm>

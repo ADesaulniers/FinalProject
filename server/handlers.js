@@ -37,7 +37,9 @@ const getUserInfo = async (req, res) => {
 // This is to get all stats from a player by his game Id in the Brawl Stars API
 const getPlayerInfo = async (req, res) => {
   const id = req.params.playerId;
-  const newId = id.slice(1);
+  console.log(req.params.playerId, "[[[[[");
+
+  const newId = id.slice(2);
   console.log(newId);
   const fetchRequest = `https://api.brawlstars.com/v1/players/%23${newId}`;
 
