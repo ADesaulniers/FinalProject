@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import PlayerStatsByIdInput from "./PlayerStatsByIdInput";
 import { AppContext } from "./AppContext";
-import FriendStatsByIdInput from "./FriendStatsByIdInput";
+import FriendStatsByIdInput from "./FriendStatsByIdinput";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -16,7 +16,6 @@ const Profile = () => {
   if (isLoading) {
     return <div>Loading ...</div>;
   }
-  console.log(playerId);
   return (
     <Div>
       <Div2>

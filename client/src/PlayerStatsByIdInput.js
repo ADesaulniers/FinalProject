@@ -12,14 +12,23 @@ const PlayerStatsByIdInput = () => {
   let history = useHistory();
   const { userInformation, setUserInformation } = useContext(AppContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setPlayerId(inputValue);
+    console.log(
+      `❗ PlayerStatsByIdInput.js:19 'e.target.value'`,
+      e.target.value
+    );
     if (isAuthenticated) {
       fetch("/api/add-player-tag", {
         method: "PUT",
-        body: JSON.stringify({ ...user, playerTag: playerId, _id: user.sub }),
+        body: JSON.stringify({
+          ...user,
+          playerTag: inputValue,
+          _id: user.sub,
+        }),
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -31,7 +40,7 @@ const PlayerStatsByIdInput = () => {
         });
     }
 
-    history.push(`/PlayerStats/%23${userInformation.data[0].playerTag}`);
+    history.push(`/PlayerStats/%23${inputValue}`);
   };
 
   return (
@@ -46,9 +55,8 @@ const PlayerStatsByIdInput = () => {
         id="playerId"
         type="text"
         placeholder="XXXXXXXX"
-        value={playerId}
         onChange={(e) => {
-          setPlayerId(e.target.value);
+          setInputValue(e.target.value);
         }}
       />
       <SubmitButton type="submit">Submit</SubmitButton>
