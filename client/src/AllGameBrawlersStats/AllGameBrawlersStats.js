@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "./AppContext";
+import { AppContext } from "../AppContext";
 import styled from "styled-components";
 import BrawlerProfile from "./BrawlerProfile";
 
@@ -42,16 +42,16 @@ const AllGameBrawlersStatsDiv = styled.div`
   width: 100vw;
 `;
 
-const Img = styled.img`
-  height: 300px;
-  width: 300px;
-  padding: 17px;
-  object-fit: cover;
+// const Img = styled.img`
+//   height: 300px;
+//   width: 300px;
+//   padding: 17px;
+//   object-fit: cover;
 
-  &:hover {
-    /* cursor: pointer; */
-  }
-`;
+//   &:hover {
+//     /* cursor: pointer; */
+//   }
+// `;
 
 const Div = styled.div`
   position: relative;

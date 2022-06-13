@@ -4,9 +4,11 @@ import styled from "styled-components";
 const DetailedBrawlerStats = ({ brawlerData }) => {
   const { id, name, starPowers, gadgets } = brawlerData;
   console.log(id);
+  console.log(brawlerData);
   return (
     <Div>
-      <Img src={`/images/BrawlersImg/${id}.png`} />
+      {/* <Img src={`/images/BrawlersImg/${id}.png`} /> */}
+      <Img src={"/images/BrawlersImg/16000031.png"} />
       <Div2>
         <P1>{name}</P1>
         {/* map over starPowers array and gadgets array to display them */}
@@ -18,12 +20,12 @@ const DetailedBrawlerStats = ({ brawlerData }) => {
           const { id: gadgetId, name: gadgetName } = gadget;
           return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
         })} */}
-        <Div3>
+        {/* <Div3>
           <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
           <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
           <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
           <Img2 src={`/images/BrawlersStarPower/SP2-${id}.png`} />
-        </Div3>
+        </Div3> */}
       </Div2>
     </Div>
   );
