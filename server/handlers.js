@@ -38,7 +38,7 @@ const getUserInfo = async (req, res) => {
 const getPlayerInfo = async (req, res) => {
   const id = req.params.playerId;
   const newId = id.slice(1);
-  console.log(newId);
+  console.log(`❗ handlers.js:41 'req.params'`, req.params);
   const fetchRequest = `https://api.brawlstars.com/v1/players/%23${newId}`;
 
   try {
@@ -120,7 +120,6 @@ const updateUser = async (req, res) => {
     await client.connect();
     const db = client.db("FinalProject");
     const query = { _id: req.body._id };
-    console.log(req.body);
     const playerTag = { ...req.body };
     const update = { $set: playerTag };
     const option = { upsert: true };

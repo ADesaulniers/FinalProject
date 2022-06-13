@@ -7,11 +7,11 @@ import Header from "./Header";
 import "./App.css";
 import GlobalStyle from "./GlobalStyle";
 import HomePage from "./HomePage";
-import PlayerStats from "./PlayerStats";
+import PlayerStats from "./PlayerStats/PlayerStats";
 import Footer from "./Footer";
-import AllGameBrawlersStats from "./AllGameBrawlersStats";
+import AllGameBrawlersStats from "./AllGameBrawlersStats/AllGameBrawlersStats";
 import Profile from "./Profile";
-import FriendStats from "./FriendStats";
+import FriendStats from "./FriendStats/FriendStats";
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();

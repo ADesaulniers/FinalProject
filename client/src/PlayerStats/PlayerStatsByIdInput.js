@@ -1,6 +1,6 @@
 // Module imports
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "./AppContext";
+import { AppContext } from "../AppContext";
 import { useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -10,16 +10,22 @@ import styled from "styled-components";
 const PlayerStatsByIdInput = () => {
   const { playerId, setPlayerId } = useContext(AppContext);
   let history = useHistory();
-  const { userInformation, setUserInformation } = useContext(AppContext);
+  // const { userInformation, setUserInformation } = useContext(AppContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setPlayerId(inputValue);
 
     if (isAuthenticated) {
       fetch("/api/add-player-tag", {
         method: "PUT",
-        body: JSON.stringify({ ...user, playerTag: playerId, _id: user.sub }),
+        body: JSON.stringify({
+          ...user,
+          playerTag: inputValue,
+          _id: user.sub,
+        }),
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -31,7 +37,7 @@ const PlayerStatsByIdInput = () => {
         });
     }
 
-    history.push(`/PlayerStats/%23${userInformation.data[0].playerTag}`);
+    history.push(`/PlayerStats/%23${inputValue}`);
   };
 
   return (
@@ -46,9 +52,8 @@ const PlayerStatsByIdInput = () => {
         id="playerId"
         type="text"
         placeholder="XXXXXXXX"
-        value={playerId}
         onChange={(e) => {
-          setPlayerId(e.target.value);
+          setInputValue(e.target.value);
         }}
       />
       <SubmitButton type="submit">Submit</SubmitButton>
