@@ -38,7 +38,7 @@ const getUserInfo = async (req, res) => {
 const getPlayerInfo = async (req, res) => {
   const id = req.params.playerId;
   const newId = id.slice(1);
-  console.log(`❗ handlers.js:41 'req.params'`, req.params);
+
   const fetchRequest = `https://api.brawlstars.com/v1/players/%23${newId}`;
 
   try {
@@ -80,6 +80,33 @@ const getAllGameBrawlersStats = async (req, res) => {
     res.status(200).json({
       status: 200,
       playerInfo: parsedBrawlersStats,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+};
+
+// This is to get stats from only one brawler from Supercell
+const getSingleBrawlerStats = async (req, res) => {
+  const brawlerId = req.params.id;
+  console.log(req.params.id);
+  const fetchRequest = `https://api.brawlstars.com/v1/brawlers/${brawlerId}`;
+
+  try {
+    const rawSingleBrawlerStats = await fetch(fetchRequest, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${process.env.BRAWLSTARS_KEY}`,
+      },
+    });
+    const parsedSingleBrawlerStats = await rawSingleBrawlerStats.json();
+    console.log(parsedSingleBrawlerStats);
+    res.status(200).json({
+      status: 200,
+      BrawlerInfo: parsedSingleBrawlerStats,
     });
   } catch (err) {
     console.log(err);
@@ -146,4 +173,5 @@ module.exports = {
   addUser,
   updateUser,
   getUserInfo,
+  getSingleBrawlerStats,
 };

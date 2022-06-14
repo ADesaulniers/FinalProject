@@ -91,10 +91,12 @@ const Img = styled.img`
 
 const RankImg = styled.img`
   width: 40px;
+  margin-right: 20px;
 `;
 
 const RankImgBadge = styled.img`
   width: 30px;
+  margin-right: 28px;
 `;
 
 const Stats = styled.p`

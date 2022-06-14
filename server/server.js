@@ -9,6 +9,7 @@ const {
   addUser,
   updateUser,
   getUserInfo,
+  getSingleBrawlerStats,
 } = require("./handlers");
 
 express()
@@ -23,6 +24,7 @@ express()
   .get(`/api/get-player-info/:playerId`, getPlayerInfo)
   .get("/api/get-user-info", getUserInfo)
   .get("/api/get-all-game-brawlers-stats", getAllGameBrawlersStats)
+  .get("/api/get-single-brawler-stats/:id", getSingleBrawlerStats)
 
   // Add user infos to database
   .post("/api/add-user", addUser)

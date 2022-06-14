@@ -1,91 +1,115 @@
 // Local imports
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { AppContext } from "../AppContext";
 
-const DetailedBrawlerStats = ({ brawlerData }) => {
-  const { id, name, starPowers, gadgets } = brawlerData;
+const DetailedBrawlerStats = () => {
+  const { id } = useParams();
+  const [detailedBrawlerStats, setDetailedBrawlerStats] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
+
   console.log(id);
-  console.log(brawlerData);
+
+  useEffect(() => {
+    fetch(`/api/get-single-brawler-stats/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDetailedBrawlerStats(data);
+        setIsLoaded(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(detailedBrawlerStats, "ppppp");
   return (
     <Div>
-      {/* <Img src={`/images/BrawlersImg/${id}.png`} /> */}
-      <Img src={"/images/BrawlersImg/16000031.png"} />
       <Div2>
-        <P1>{name}</P1>
-        {/* map over starPowers array and gadgets array to display them */}
-        {/* {starPowers.map((starPower) => {
-          const { id: starPowerId, name: starPowerName } = starPower;
-          return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;
-        })} */}
-        {/* {gadgets.map((gadget) => {
-          const { id: gadgetId, name: gadgetName } = gadget;
-          return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
-        })} */}
-        {/* <Div3>
-          <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
-          <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
-          <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
-          <Img2 src={`/images/BrawlersStarPower/SP2-${id}.png`} />
-        </Div3> */}
+        <Img src={`/images/BrawlersImg/${id}.png`} />
       </Div2>
+
+      {isLoaded && (
+        <StatsDiv>
+          <BrawlerName>{detailedBrawlerStats.BrawlerInfo.name}</BrawlerName>
+          <GadgetP>Gadgets</GadgetP>
+          <P>
+            {" "}
+            <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
+            {detailedBrawlerStats.BrawlerInfo.gadgets[0].name}
+          </P>
+          <P>
+            <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
+            {detailedBrawlerStats.BrawlerInfo.gadgets[1].name}
+          </P>
+          <StarPower>Star Powers</StarPower>
+          <P>
+            <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
+            {detailedBrawlerStats.BrawlerInfo.starPowers[0].name}
+          </P>
+          <P>
+            <Img2 src={`/images/BrawlersStarPower/SP2-${id}.png`} />
+            {detailedBrawlerStats.BrawlerInfo.starPowers[1].name}
+          </P>
+        </StatsDiv>
+      )}
     </Div>
   );
 };
 
+const Img = styled.img`
+  z-index: 1;
+  max-width: 100%;
+  max-height: 100vh;
+  margin: auto;
+`;
+
+const GadgetP = styled.p`
+  font-weight: bold;
+  margin-left: 20px;
+`;
+
+const StarPower = styled.p`
+  font-weight: bold;
+  margin-left: 20px;
+`;
+
+const P = styled.p`
+  margin: 20px;
+`;
+
+const BrawlerName = styled.p`
+  font-size: 40px;
+  font-weight: bold;
+  padding-bottom: 60px;
+`;
+
 const Div = styled.div`
-  position: relative;
-  width: fit-content;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  margin-bottom: 33px;
 `;
 
 const Div2 = styled.div`
   position: absolute;
-  top: 0;
-  padding: 75px 60px;
+`;
+
+const StatsDiv = styled.div`
   width: fit-content;
-  justify-content: right;
-  opacity: 0;
-
-  &:hover {
-    opacity: 0.8;
-    background-color: white;
-    font-weight: bold;
-    /* cursor: pointer; */
-  }
-`;
-
-const Div3 = styled.div`
-  padding-top: 5px;
-  width: fit-content;
-`;
-
-const P = styled.p`
-  padding: 6px;
-  font-size: 14px;
-  width: 280px;
   height: 100%;
-`;
-
-const P1 = styled.p`
-  padding: 6px;
-  font-size: 15px;
-  width: 100%;
-  height: 100%;
-`;
-
-const Img = styled.img`
-  height: 300px;
-  width: 300px;
-  padding: 17px;
-  object-fit: cover;
-  /* border: 5px solid black; */
-
-  &:hover {
-    /* cursor: pointer; */
-  }
+  justify-content: center;
+  align-items: center;
+  margin-left: 850px;
+  margin-bottom: 80px;
+  padding-top: 80px;
 `;
 
 const Img2 = styled.img`
   height: 25px;
   width: 25px;
+  margin-right: 20px;
 `;
 
 export default DetailedBrawlerStats;

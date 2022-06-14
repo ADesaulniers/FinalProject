@@ -12,6 +12,7 @@ import Footer from "./Footer";
 import AllGameBrawlersStats from "./AllGameBrawlersStats/AllGameBrawlersStats";
 import Profile from "./Profile";
 import FriendStats from "./FriendStats/FriendStats";
+import DetailedBrawlerStats from "./AllGameBrawlersStats/DetailedBrawlerStats";
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -30,20 +31,24 @@ const App = () => {
             <HomePage />
           </Route>
 
-          <Route exact path="/PlayerStats/:playerId">
+          <Route path="/PlayerStats/:playerId">
             <PlayerStats />
           </Route>
 
-          <Route exact path="/FriendStats/:playerId">
+          <Route path="/FriendStats/:playerId">
             <FriendStats />
           </Route>
 
-          <Route exact path="/AllGameBrawlersStats">
+          <Route path="/AllGameBrawlersStats">
             <AllGameBrawlersStats />
           </Route>
 
-          <Route exact path="/profile">
+          <Route path="/profile">
             <Profile />
+          </Route>
+
+          <Route path="/DetailedBrawlerStats/:id">
+            <DetailedBrawlerStats />
           </Route>
         </Switch>
         <Footer />

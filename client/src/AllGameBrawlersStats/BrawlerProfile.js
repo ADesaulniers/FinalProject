@@ -1,37 +1,35 @@
 // Local imports
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const BrawlerProfile = ({ brawlerData }) => {
   // Destructure the brawlerData object
   const { id, name, starPowers, gadgets } = brawlerData;
   let history = useHistory();
 
-  const brawlerClick = () => {
-    history.push("/DetailedBrawlerStats");
-  };
-
   return (
-    <Div onClick={brawlerClick}>
-      <Img src={`/images/BrawlersImg/${id}.png`} />
-      <Div2>
-        <P1>{name}</P1>
-        {/* map over starPowers array and gadgets array to display them */}
-        {starPowers.map((starPower) => {
-          const { id: starPowerId, name: starPowerName } = starPower;
-          return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;
-        })}
-        {gadgets.map((gadget) => {
-          const { id: gadgetId, name: gadgetName } = gadget;
-          return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
-        })}
-        <Div3>
-          <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
-          <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
-          <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
-          <Img2 src={`/images/BrawlersStarPower/SP2-${id}.png`} />
-        </Div3>
-      </Div2>
+    <Div>
+      <NavToBrawlerDetails to={`/DetailedBrawlerStats/${id}`}>
+        <Img src={`/images/BrawlersImg/${id}.png`} />
+        <Div2>
+          <P1>{name}</P1>
+          {/* map over starPowers array and gadgets array to display them */}
+          {starPowers.map((starPower) => {
+            const { id: starPowerId, name: starPowerName } = starPower;
+            return <P key={starPowerId}>{starPowerName.toLowerCase()}</P>;
+          })}
+          {gadgets.map((gadget) => {
+            const { id: gadgetId, name: gadgetName } = gadget;
+            return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
+          })}
+          <Div3>
+            <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
+            <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
+            <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
+            <Img2 src={`/images/BrawlersStarPower/SP2-${id}.png`} />
+          </Div3>
+        </Div2>
+      </NavToBrawlerDetails>
     </Div>
   );
 };
@@ -41,6 +39,8 @@ const Div = styled.div`
   width: fit-content;
 `;
 
+const NavToBrawlerDetails = styled(NavLink)``;
+
 const Div2 = styled.div`
   position: absolute;
   top: 0;
@@ -48,11 +48,13 @@ const Div2 = styled.div`
   width: fit-content;
   justify-content: right;
   opacity: 0;
+  color: black;
 
   &:hover {
     opacity: 0.8;
     background-color: white;
     font-weight: bold;
+    color: black;
     /* cursor: pointer; */
   }
 `;
