@@ -16,8 +16,6 @@ const FriendStatsByIdInput = () => {
     history.push(`/FriendStats/%23${friendPlayerId}`);
   };
 
-  console.log(friendPlayerId, "))))");
-
   return (
     <InputDiv
       onSubmit={(e) => {

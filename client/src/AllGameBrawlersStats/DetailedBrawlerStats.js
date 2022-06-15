@@ -8,8 +8,6 @@ const DetailedBrawlerStats = () => {
   const [detailedBrawlerStats, setDetailedBrawlerStats] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log(id);
-
   useEffect(() => {
     fetch(`/api/get-single-brawler-stats/${id}`)
       .then((res) => res.json())
@@ -22,7 +20,6 @@ const DetailedBrawlerStats = () => {
       });
   }, []);
 
-  console.log(detailedBrawlerStats, "ppppp");
   return (
     <Div>
       <Div2>

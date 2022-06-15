@@ -24,7 +24,6 @@ const FriendStats = () => {
       });
   }, [friendPlayerId]);
 
-  console.log(friendInfo);
   return (
     <Div>
       <Div2>
