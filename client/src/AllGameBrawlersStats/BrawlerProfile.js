@@ -23,6 +23,7 @@ const BrawlerProfile = ({ brawlerData }) => {
             return <P key={gadgetId}>{gadgetName.toLowerCase()}</P>;
           })}
           <Div3>
+            {/* This is the gadgets and starPower icons */}
             <Img2 src={`/images/BrawlersGadget/G1-${id}.png`} />
             <Img2 src={`/images/BrawlersGadget/G2-${id}.png`} />
             <Img2 src={`/images/BrawlersStarPower/SP1-${id}.png`} />
@@ -55,7 +56,6 @@ const Div2 = styled.div`
     background-color: white;
     font-weight: bold;
     color: black;
-    /* cursor: pointer; */
   }
 `;
 
@@ -83,11 +83,6 @@ const Img = styled.img`
   width: 300px;
   padding: 17px;
   object-fit: cover;
-  /* border: 5px solid black; */
-
-  &:hover {
-    /* cursor: pointer; */
-  }
 `;
 
 const Img2 = styled.img`

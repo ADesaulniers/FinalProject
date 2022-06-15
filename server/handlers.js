@@ -51,7 +51,6 @@ const getPlayerInfo = async (req, res) => {
       },
     });
     const parsedPlayerInfo = await rawPlayerInfo.json();
-    console.log(parsedPlayerInfo);
     res.status(200).json({
       status: 200,
       playerInfo: parsedPlayerInfo,
@@ -76,7 +75,6 @@ const getAllGameBrawlersStats = async (req, res) => {
       },
     });
     const parsedBrawlersStats = await rawBrawlersStats.json();
-    console.log(parsedBrawlersStats);
     res.status(200).json({
       status: 200,
       playerInfo: parsedBrawlersStats,
@@ -90,7 +88,6 @@ const getAllGameBrawlersStats = async (req, res) => {
 // This is to get stats from only one brawler from Supercell
 const getSingleBrawlerStats = async (req, res) => {
   const brawlerId = req.params.id;
-  console.log(req.params.id);
   const fetchRequest = `https://api.brawlstars.com/v1/brawlers/${brawlerId}`;
 
   try {

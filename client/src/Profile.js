@@ -1,5 +1,5 @@
 // Module imports
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Local imports
@@ -10,8 +10,7 @@ import FriendStatsByIdInput from "./FriendStats/FriendStatsByIdInput";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { userInformation, setUserInformation, playerId } =
-    useContext(AppContext);
+  const { userInformation, playerId } = useContext(AppContext);
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -71,9 +70,7 @@ const Div2 = styled.div`
   position: absolute;
 `;
 
-const Div3 = styled.div`
-  /* position: absolute; */
-`;
+const Div3 = styled.div``;
 
 const Div4 = styled.div`
   position: absolute;

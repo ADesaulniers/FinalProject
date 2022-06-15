@@ -9,7 +9,7 @@ export const AppContextProvider = ({ children }) => {
   const [playerId, setPlayerId] = useState("");
   const [allBrawlersStats, setAllBrawlersStats] = useState("");
   const [userInformation, setUserInformation] = useState("");
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const [friendPlayerId, setFriendPlayerId] = useState("");
   const [friendInfo, setFriendInfo] = useState("");
 
@@ -19,7 +19,6 @@ export const AppContextProvider = ({ children }) => {
       .then((data) => {
         setUserInformation(data);
         setPlayerId(data.data[0].playerTag);
-        // setIsLoaded(true)
       })
       .catch((error) => {
         console.log(error);

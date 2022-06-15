@@ -11,9 +11,8 @@ import LogoutButton from "./Auth0/LogoutButton";
 
 const Header = () => {
   const { playerId } = useContext(AppContext);
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const { playerInfo, setPlayerInfo } = useContext(AppContext);
-  const { friendPlayerId, setFriendPlayerId } = useContext(AppContext);
+  const { isAuthenticated } = useAuth0();
+  const { friendPlayerId } = useContext(AppContext);
 
   return (
     <Div>
@@ -48,7 +47,6 @@ const HeaderMainDiv = styled.div`
   color: white;
   padding: 20px;
   display: flex;
-  /* justify-content: left; */
   align-items: center;
 `;
 

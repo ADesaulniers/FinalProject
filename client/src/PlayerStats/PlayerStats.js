@@ -11,7 +11,6 @@ const PlayerStats = () => {
   const { playerInfo, setPlayerInfo } = useContext(AppContext);
   const { playerId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const { userInformation, setUserInformation } = useContext(AppContext);
 
   useEffect(() => {
     fetch(`/api/get-player-info/${playerId}`)
@@ -77,9 +76,6 @@ const PlayerStats = () => {
               {playerInfo?.playerInfo.club.name}
             </p>
           </PlayerInfoDiv>
-          {/* <BrawlerDiv>
-        <Img src={`/images/BrawlersImg/${playerInfo.playerInfo}}.png`} />
-        </BrawlerDiv> */}
         </StatsDiv>
       )}
     </Div>

@@ -42,17 +42,6 @@ const AllGameBrawlersStatsDiv = styled.div`
   width: 100vw;
 `;
 
-// const Img = styled.img`
-//   height: 300px;
-//   width: 300px;
-//   padding: 17px;
-//   object-fit: cover;
-
-//   &:hover {
-//     /* cursor: pointer; */
-//   }
-// `;
-
 const Div = styled.div`
   position: relative;
   width: fit-content;

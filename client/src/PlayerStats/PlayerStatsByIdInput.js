@@ -1,5 +1,5 @@
 // Module imports
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
 import { useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -8,10 +8,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 
 const PlayerStatsByIdInput = () => {
-  const { playerId, setPlayerId } = useContext(AppContext);
+  const { setPlayerId } = useContext(AppContext);
   let history = useHistory();
-  // const { userInformation, setUserInformation } = useContext(AppContext);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
