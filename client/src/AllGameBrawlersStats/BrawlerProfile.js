@@ -47,7 +47,7 @@ const NavToBrawlerDetails = styled(NavLink)``;
 const Div2 = styled.div`
   position: absolute;
   top: 0;
-  padding: 75px 60px;
+  padding: 75px 0px 75px 60px;
   width: fit-content;
   justify-content: right;
   opacity: 0;

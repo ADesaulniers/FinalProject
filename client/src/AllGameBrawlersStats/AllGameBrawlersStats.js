@@ -42,7 +42,7 @@ const AllGameBrawlersStats = () => {
 const AllGameBrawlersStatsDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
+  /* width: 100vw; */
 `;
 
 const Div = styled.div`
