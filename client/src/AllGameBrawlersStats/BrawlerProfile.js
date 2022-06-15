@@ -1,6 +1,8 @@
+// Module imports
+import { NavLink, useHistory } from "react-router-dom";
+
 // Local imports
 import styled from "styled-components";
-import { NavLink, useHistory } from "react-router-dom";
 
 const BrawlerProfile = ({ brawlerData }) => {
   // Destructure the brawlerData object

@@ -1,5 +1,8 @@
+// Module imports
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../AppContext";
+
+// Local imports
 import styled from "styled-components";
 import BrawlerProfile from "./BrawlerProfile";
 

@@ -1,6 +1,8 @@
-// Local imports
+// Module imports
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+// Local imports
 import styled from "styled-components";
 
 const DetailedBrawlerStats = () => {

@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// Module imports
+import { createContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const AppContext = createContext(null);
